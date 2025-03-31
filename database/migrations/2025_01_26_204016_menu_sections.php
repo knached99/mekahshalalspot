@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('menu_sections', function (Blueprint $table) {
             $table->uuid('menu_section_id')->primary();
             $table->string('name');
+            $table->boolean('status');
             $table->timestamps();
         });
         

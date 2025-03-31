@@ -20,7 +20,7 @@ return new class extends Migration
                 $table->string('image_path');
                 $table->timestamps();
         
-                $table->foreign('menu_section_id')->references('id')->on('menu_sections')->onDelete('cascade');
+                $table->foreign('menu_section_id')->references('menu_section_id')->on('menu_sections')->onDelete('cascade');
             });
         }
     }

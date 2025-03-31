@@ -14,6 +14,7 @@ class MenuSections extends Model
     protected $fillable = [
         'menu_section_id',
         'name',
+        'status'
     ];
 
     protected $casts = [

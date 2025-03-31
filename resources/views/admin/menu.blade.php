@@ -35,7 +35,9 @@
                 {{session('error')}}
                 </div>
                 @endif
+                @if(!$sections->isEmpty())
                 <x-managercomponents.restaurantmenu :sections="$sections"/>
+                @endif
                 </div>
 
             </div>

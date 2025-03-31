@@ -21,7 +21,7 @@
               <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-white">{{{date('F jS, Y \a\t g:i A', strtotime($section->created_at))}}}</td>
               <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-white">{{{date('F jS, Y \a\t g:i A', strtotime($section->updated_at))}}}</td>
               <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-white">{{$section->menuItems->count()}}</td> <!-- Displaying number of menu items -->
-              <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-white">View</td>
+              <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-white"><a href="{{route('menuEdit', ['sectionID'=>$section->menu_section_id])}}">View</a></td>
               <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-white">
               <form action="{{route('deleteSection', ['sectionID' => $section->menu_section_id])}}" method="post">
               @csrf 

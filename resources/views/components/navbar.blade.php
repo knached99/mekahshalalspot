@@ -13,7 +13,7 @@
         </li>
 
         <link class="nav-item">
-        <a class="nav-link" href="#">Menu</a>
+      <a class="nav-link" href="{{route('restaurant-menu')}}">Menu</a>
         </li>
 
         <li class="nav-item">

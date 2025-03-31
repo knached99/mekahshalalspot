@@ -15,7 +15,14 @@ class Manager extends Controller
 
     public function displayMenuManager(){
         $sections = MenuSections::with('menuItems')->get();       
+        //dd($sections);
         return view('admin.menu', compact('sections'));
+    }
+
+    public function viewSection($sectionID){
+        $section = MenuSections::findOrFail($sectionID);
+       
+        return view('admin.section.view', ['sectionID'=>$sectionID, 'section'=>$section]);
     }
 
     public function deleteSection($sectionID){

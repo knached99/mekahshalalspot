@@ -34,6 +34,8 @@
   <link href="{{asset('css/style.css')}}" rel="stylesheet" />
   <!-- responsive style -->
   <link href="{{asset('css/responsive.css')}}" rel="stylesheet" />
-
+  @if(\Route::currentRouteName() === '/' || \Route::currentRouteName() === 'restaurant-menu')
+  <link href="{{asset('css/menu.css')}}" rel="stylesheet" />
+  @endif
 </head>
 <body>
