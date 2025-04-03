@@ -13,7 +13,7 @@ return new class extends Migration
     {
         if (!Schema::hasTable('menu_items')) {
             Schema::create('menu_items', function (Blueprint $table) {
-                $table->id();
+                $table->uuid('itemID')->primary();
                 $table->uuid('menu_section_id');
                 $table->string('name');
                 $table->decimal('price', 8, 2);

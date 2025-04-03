@@ -8,6 +8,7 @@ use App\Models\MenuSections;
 use App\Models\MenuItems;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class EditMenuSection extends Component
 {
@@ -37,10 +38,40 @@ class EditMenuSection extends Component
         $this->menuItems[] = ['name' => '', 'price' => '', 'image'=> null];
     }
 
-    public function removeMenuItem($index){
+    public function removeMenuItem($index, $itemID)
+    {
+        \Log::info('Attempting to remove menu item with section id: '.$itemID);
+    
+        try {
+        $item = MenuItems::findOrFail($itemID);
+        
+        if ($item) {
+            \Log::info('Item found, checking if an image exists...');
+            if ($item->image_path && Storage::disk('public')->exists($item->image_path)) {
+                \Log::info('Image exists: '.$item->image_path);
+                \Log::info('Deleting image...');
+                Storage::disk('public')->delete($item->image_path);
+                \Log::info('Image deleted!');
+            }
+    
+            \Log::info('Deleting item...');
+            $item->delete();
+            \Log::info('Item deleted!');
+        }
+    
+        \Log::info('Unsetting menu item index and re-indexing the array...');
         unset($this->menuItems[$index]);
-        $this->menuItems = array_values($this->menuItems); // reindexing the array 
+        $this->menuItems = array_values($this->menuItems);
+        \Log::info('Item index removed and array re-indexed.');
+
     }
+    catch(ModelNotFoundException $e){
+        \Log::info('Item not found');
+        $this->error = 'Cannot find item to delete';
+    }
+
+    }
+    
 
     public function save(){
         $this->validate([

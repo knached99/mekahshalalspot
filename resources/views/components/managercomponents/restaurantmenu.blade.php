@@ -6,23 +6,23 @@
         <table class="min-w-full divide-y divide-gray-200">
           <thead>
             <tr>
-              <th scope="col" class="px-6 py-3 text-start text-xs font-medium text-white uppercase">Section Name</th>
-              <th scope="col" class="px-6 py-3 text-start text-xs font-medium text-white uppercase">Created At</th>
-              <th scope="col" class="px-6 py-3 text-start text-xs font-medium text-white uppercase">Updated At</th>
-              <th scope="col" class="px-6 py-3 text-start text-xs font-medium text-white uppercase">#Menu Items</th>
-              <th scope="col" class="px-6 py-3 text-start text-xs font-medium text-white uppercase">View</th>
-              <th scope="col" class="px-6 py-3 text-start text-xs font-medium text-white uppercase">Delete</th>
+              <th scope="col" class="px-6 py-3 text-start text-xs font-medium dark:text-white uppercase">Section Name</th>
+              <th scope="col" class="px-6 py-3 text-start text-xs font-medium dark:text-white uppercase">Created At</th>
+              <th scope="col" class="px-6 py-3 text-start text-xs font-medium dark:text-white uppercase">Updated At</th>
+              <th scope="col" class="px-6 py-3 text-start text-xs font-medium dark:text-white uppercase">#Menu Items</th>
+              <th scope="col" class="px-6 py-3 text-start text-xs font-medium dark:text-white uppercase">View</th>
+              <th scope="col" class="px-6 py-3 text-start text-xs font-medium dark:text-white uppercase">Delete</th>
             </tr>
           </thead>
           <tbody class="divide-y divide-gray-200">
             @foreach($sections as $section)
             <tr>
-              <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-white">{{$section->name}}</td>
-              <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-white">{{{date('F jS, Y \a\t g:i A', strtotime($section->created_at))}}}</td>
-              <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-white">{{{date('F jS, Y \a\t g:i A', strtotime($section->updated_at))}}}</td>
-              <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-white">{{$section->menuItems->count()}}</td> <!-- Displaying number of menu items -->
-              <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-white"><a href="{{route('menuEdit', ['sectionID'=>$section->menu_section_id])}}">View</a></td>
-              <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-white">
+              <td class="px-6 py-4 whitespace-nowrap text-sm font-medium dark:text-white">{{$section->name}}</td>
+              <td class="px-6 py-4 whitespace-nowrap text-sm font-medium dark:text-white">{{{date('F jS, Y \a\t g:i A', strtotime($section->created_at))}}}</td>
+              <td class="px-6 py-4 whitespace-nowrap text-sm font-medium dark:text-white">{{{date('F jS, Y \a\t g:i A', strtotime($section->updated_at))}}}</td>
+              <td class="px-6 py-4 whitespace-nowrap text-sm font-medium dark:text-white">{{$section->menuItems->count()}}</td> <!-- Displaying number of menu items -->
+              <td class="px-6 py-4 whitespace-nowrap text-sm font-medium dark:text-white"><a class="bg-slate-400 p-3 rounded text-white" href="{{route('menuEdit', ['sectionID'=>$section->menu_section_id])}}">View</a></td>
+              <td class="px-6 py-4 whitespace-nowrap text-sm font-medium dark:text-white">
               <form action="{{route('deleteSection', ['sectionID' => $section->menu_section_id])}}" method="post">
               @csrf 
               @method('DELETE')

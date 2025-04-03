@@ -21,7 +21,7 @@ class Manager extends Controller
 
     public function viewSection($sectionID){
         $section = MenuSections::findOrFail($sectionID);
-       
+        
         return view('admin.section.view', ['sectionID'=>$sectionID, 'section'=>$section]);
     }
 

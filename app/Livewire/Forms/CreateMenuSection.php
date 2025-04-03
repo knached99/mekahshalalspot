@@ -26,19 +26,16 @@ class CreateMenuSection extends Component
         $this->menu_section_id = Str::uuid(10);
         $this->step = 1;
         $this->sectionName = '';
-        $this->status = null;
         $this->success = '';
         $this->error = '';
     }
 
     protected $rules = [
         'sectionName' => 'required|string|max:255',
-        'status'=>'required'
     ];
 
     protected $messages = [
         'sectionName.required' => 'Section name is required',
-        'status.required'=>'Set status either to active or inactive'
     ];
 
     public function saveSection(){
@@ -48,7 +45,7 @@ class CreateMenuSection extends Component
         $section = MenuSections::create([
             'menu_section_id'=>$this->menu_section_id,
             'name'=>$this->sectionName,
-            'status'=>$this->status
+            'status'=>1
         ]);
 
         \Log::info('data saved!');

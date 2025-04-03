@@ -2,22 +2,13 @@
     <h2 class="text-2xl font-semibold text-gray-900 dark:text-gray-100 text-center mb-4">
         Edit Section: {{ $name }}
     </h2>
-     @if(isset($image))
-        <div style="margin-bottom: 20px;">
-        <img src="{{asset('storage/'.$image)}}" class="img-fluid img-thumbnail rounded shadow-sm cursor-pointer" style="max-width: 150px; height: 150px">
-        </div>
-    @endif
-
-    @if($success)
-        <p style="color: #21ff9f;">{{ $success }}</p>
-    @elseif($error)
-        <p style="color: #ff5454;">{{ $error }}</p>
-    @endif
 
     <form wire:submit.prevent="save" enctype="multipart/form-data" class="space-y-4">
         <div class="mb-4">
             <label for="name" class="block text-gray-700 dark:text-gray-300 font-medium">Section Name:</label>
-            <input type="text" wire:model="name" class="w-full p-2 border rounded-md dark:bg-gray-700 dark:text-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+            <input type="text" wire:model="name"
+                class="w-full p-2 border rounded-md dark:bg-gray-700 dark:text-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                required>
         </div>
 
         {{-- <div class="mt-4">
@@ -49,30 +40,50 @@
 
         <div class="mt-4">
             <h3 class="text-lg font-semibold text-gray-900 dark:text-gray-100">Menu Items</h3>
-            <button type="button" wire:click="addMenuItem" class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition">
+            <button type="button" wire:click="addMenuItem"
+                class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition">
                 + Add Menu Item
             </button>
 
             @foreach ($menuItems as $index => $menuItem)
                 <div class="border p-4 mt-2 rounded-md dark:border-gray-600 bg-gray-100 dark:bg-gray-700">
+                    @if (isset($menuItem['image_path']))
+                        <img src="{{ asset('storage/' . $menuItem['image_path']) }}" class="m-3 w-20 h-20 rounded-md"
+                            alt="{{ $menuItem['name'] }}" />
+                    @endif
                     <label class="block text-gray-700 dark:text-gray-300">Name:</label>
-                    <input type="text" wire:model="menuItems.{{ $index }}.name" class="w-full p-2 border rounded-md dark:bg-gray-800 dark:text-gray-200 focus:ring-blue-500 focus:outline-none">
+                    <input type="text" wire:model="menuItems.{{ $index }}.name"
+                        class="w-full p-2 border rounded-md dark:bg-gray-800 dark:text-gray-200 focus:ring-blue-500 focus:outline-none">
 
                     <label class="block text-gray-700 dark:text-gray-300 mt-2">Price:</label>
-                    <input type="number" wire:model="menuItems.{{ $index }}.price" class="w-full p-2 border rounded-md dark:bg-gray-800 dark:text-gray-200 focus:ring-blue-500 focus:outline-none" step="0.01">
+                    <input type="number" wire:model="menuItems.{{ $index }}.price"
+                        class="w-full p-2 border rounded-md dark:bg-gray-800 dark:text-gray-200 focus:ring-blue-500 focus:outline-none"
+                        step="0.01">
+
 
                     <label class="block text-gray-700 dark:text-gray-300 mt-2">Image:</label>
-                    <input type="file" wire:model="menuItems.{{ $index }}.image" accept="image/*" class="w-full border p-2 rounded-md dark:bg-gray-800 dark:text-gray-200">
+                    <input type="file" wire:model="menuItems.{{ $index }}.image" accept="image/*"
+                        class="w-full border p-2 rounded-md dark:bg-gray-800 dark:text-gray-200">
 
-                    <button type="button" wire:click="removeMenuItem({{ $index }})" class="bg-red-500 text-white px-4 py-2 mt-2 rounded-md hover:bg-red-600 transition">
+                    <button type="button"
+                        wire:click="removeMenuItem({{ $index }}, '{{ $menuItem['menu_section_id'] }}')"
+                        class="bg-red-500 text-white px-4 py-2 mt-2 rounded-md hover:bg-red-600 transition">
                         Remove
                     </button>
+
+
                 </div>
             @endforeach
         </div>
 
-        <button type="submit" class="bg-green-500 text-white px-6 py-2 rounded-md hover:bg-green-600 transition w-full">
+        <button type="submit"
+            class="bg-slate-800 text-white px-6 py-2 rounded-md hover:bg-slate-900 transition w-full">
             Save
         </button>
+        @if ($success)
+            <div class="bg-emerald-500 p-2 w-50 text-white">{{ $success }}</div>
+        @elseif($error)
+            <div class="bg-red-500 p-2 text-white">{{ $error }}</div>
+        @endif
     </form>
 </div>

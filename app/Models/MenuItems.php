@@ -10,7 +10,7 @@ class MenuItems extends Model
     protected $table = 'menu_items';
 
     protected $fillable = [
-
+        'itemID',
         'menu_section_id',
         'name',
         'price',
