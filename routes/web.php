@@ -6,6 +6,7 @@ use App\Http\Controllers\Manager;
 //Route::view('/', 'welcome');
 
 Route::get('/', [Home::class, 'homePage'])->name('/');
+Route::get('/about', [Home::class, 'aboutPage'])->name('about');
 Route::get('/restaurant-menu', [Home::class, 'restaurantMenu'])->name('restaurant-menu');
 // Route::view('dashboard', 'dashboard')
 //     ->middleware(['auth', 'verified'])
@@ -24,6 +25,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
 // Routes that do not require authentication or email verification
 Route::get('/catering', [Home::class, 'cateringPage'])->name('catering');
+
+Route::get('/cart', [Home::class, 'cart'])->name('cart');
 
 
 Route::view('profile', 'profile')

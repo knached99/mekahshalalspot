@@ -1,6 +1,7 @@
-<x-header/>
-<x-navbar/>
-<div style="margin: 300px;">
- <x-home.menu :sections="$sections" :menuItems="$menuItems"/>
+<x-header />
+<x-navbar />
+<div style="height: 100vh; overflow-x: hidden; overflow-y: auto;">
+    <x-home.menu :sections="$sections" :menuItems="$menuItems" />
+
 </div>
-<x-footer/>
+<x-footer />

@@ -9,6 +9,8 @@ class MenuItems extends Model
 {
     protected $table = 'menu_items';
 
+    protected $primaryKey = 'itemID';
+    
     protected $fillable = [
         'itemID',
         'menu_section_id',
@@ -18,6 +20,7 @@ class MenuItems extends Model
     ];
 
     protected $casts = [
+        'itemID'=>'string',
         'menu_section_id' => 'string',
         'price'=>'double',
         'image_path'=> 'string',

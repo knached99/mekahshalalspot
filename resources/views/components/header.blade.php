@@ -35,7 +35,9 @@
     <!-- font awesome style -->
     <link href="{{ asset('css/font-awesome.min.css') }}" rel="stylesheet" />
     <link rel="icon" type="image/x-icon" href="{{ asset('images/logo.avif') }}" />
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- Custom styles for this template -->
     <link href="{{ asset('css/style.css') }}" rel="stylesheet" />
     <!-- responsive style -->
@@ -43,6 +45,20 @@
     @if (\Route::currentRouteName() === '/' || \Route::currentRouteName() === 'restaurant-menu')
         <link href="{{ asset('css/menu.css') }}" rel="stylesheet" />
     @endif
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Akaya+Kanadaka&display=swap" rel="stylesheet">
+
+    <style>
+        .akaya-kanadaka-regular {
+            font-family: "Akaya Kanadaka", system-ui;
+            font-weight: 400;
+            font-style: normal;
+        }
+    </style>
+    @livewireStyles
 </head>
 
 <body>

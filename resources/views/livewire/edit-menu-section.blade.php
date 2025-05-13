@@ -65,8 +65,17 @@
                     <input type="file" wire:model="menuItems.{{ $index }}.image" accept="image/*"
                         class="w-full border p-2 rounded-md dark:bg-gray-800 dark:text-gray-200">
 
-                    <button type="button"
-                        wire:click="removeMenuItem({{ $index }}, '{{ $menuItem['menu_section_id'] }}')"
+                    @php
+
+                        $sectionID = '';
+
+                        if (!empty($menuItem['menu_section_id'])) {
+                            $sectionID = $menuItem['menu_section_id'];
+                        }
+
+                    @endphp
+
+                    <button type="button" wire:click="removeMenuItem({{ $index }}, '{{ $sectionID }}')"
                         class="bg-red-500 text-white px-4 py-2 mt-2 rounded-md hover:bg-red-600 transition">
                         Remove
                     </button>

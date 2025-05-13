@@ -425,7 +425,9 @@ video {
     font-family: Marhey, serif;
     font-weight: 900;
     color: #fff;
-    font-size: 70px; /* Adjust for mobile in media query */
+    font-size: 90px; /* Adjust for mobile in media query */
+    font-family: "Akaya Kanadaka", system-ui;
+    font-style: normal;
 }
 
 .restaurauntSubTitle {

@@ -25,12 +25,16 @@
                                     <div class="content"
                                         style="display: flex; flex-direction: column; align-items: center; text-align: center;">
                                         <img src="images/logo.png" class="logo">
-                                        <h1 class="restaurantTitle">Mekah's</h1>
+                                        <h1 class="restaurantTitle">Mekahs</h1>
                                         <h2 class="restaurauntSubTitle">Halal Spot</h2>
                                         <p>403 Saw Mill Rd, West Haven, CT 06516</p>
                                         <div class="btn-box">
                                             <a href="https://www.ubereats.com/..." target="_blank"
                                                 rel="noopener noreferrer" class="btn1">Order Now</a>
+                                            <h6 class="mt-4 text-white"
+                                                style="font-weight: 800; font-size: 25px; font-style: italic; font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;">
+                                                Please note, this is our <span class="fw-bold">only</span> location as
+                                                of now<h6>
                                         </div>
                                     </div>
                                 </div>
@@ -114,19 +118,21 @@
 
 <!-- offer section -->
 
-<x-home.deals />
+<x-home.deals :deal="$deal" />
 
 <!-- end offer section -->
 
-<!-- food section -->
-<div style="height: 150vh; overflow-x: hidden; overflow-y: auto;">
-    <x-home.menu :sections="$sections" :menuItems="$menuItems" />
-</div>
-<!-- end food section -->
-
+@if (!$sections->isEmpty())
+    <!-- food section -->
+    <div style="height: 100vh; overflow-x: hidden; overflow-y: auto;">
+        <x-home.menu :sections="$sections" :menuItems="$menuItems" />
+    </div>
+    <!-- end food section -->
+@endif
 <!-- about section -->
 
-<x-home.about />
+<x-home.about :content="$content" />
+
 <!-- end about section -->
 
 <!-- Contact section -->

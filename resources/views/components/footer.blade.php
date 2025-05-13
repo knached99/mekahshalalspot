@@ -106,6 +106,16 @@
      <script src="{{ asset('js/zoomLens.js') }}"></script>
      <script src="{{ asset('js/deviceDetect.js') }}"></script>
  @endif
+
+ <script>
+     document.addEventListener('DOMContentLoaded', function() {
+
+         Livewire.on('cartUpdated', function(count) {
+             document.getElementById('cart-count').textContent = count;
+         });
+     });
+ </script>
+ @livewireScripts
  </body>
 
  </html>
