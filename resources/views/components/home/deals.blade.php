@@ -3,13 +3,17 @@
     <div class="offer_container">
         <div class="container ">
             <div class="row">
+             @if($deal)
                 <h1>Deals</h1>
-                <div class="col-md-6  ">
-                    <div class="box ">
+                <div class="col-md-6">
+                
+                    <div class="box">
+                   
                         <div class="img-box">
                             <img src="{{ asset('storage/' . $deal->deal_image) }}" style="width: 100%; height: 100%;"
                                 alt="">
                         </div>
+                       
                         <div class="detail-box">
                             <h2>
                                 {{ $deal->deal_title }}
@@ -22,7 +26,9 @@
                             </span>
                         </div>
                     </div>
+                     
                 </div>
+                @endif 
                 {{-- <div class="col-md-6  ">
             <div class="box ">
               <div class="img-box">

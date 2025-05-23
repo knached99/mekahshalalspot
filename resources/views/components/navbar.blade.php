@@ -1,4 +1,4 @@
-  <nav class="navbar navbar-expand-lg navbar-light bg-white sticky top-0">
+  <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top">
       <div class="container-fluid">
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
               aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -13,7 +13,7 @@
                       <a class="nav-link" href="{{ route('about') }}">About</a>
                   </li>
 
-                  <link class="nav-item">
+                  <li class="nav-item">
                   <a class="nav-link" href="{{ route('restaurant-menu') }}">Menu</a>
                   </li>
 
@@ -22,14 +22,7 @@
                   </li>
               </ul>
 
-              <ul class="navbar-nav me-auto mb-2 mb-lg-0 float-end">
-                  <li class="nav-item">
-                      <a class="nav-link" href="{{ route('cart') }}">
-                          <i class="fa-solid fa-cart-shopping text-dark" style="font-size: 25px;"></i>
-                          <sup id="cart-count">0</sup>
-                      </a>
-                  </li>
-              </ul>
+                <livewire:cart-icon/>
 
           </div>
       </div>

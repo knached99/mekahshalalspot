@@ -8,7 +8,9 @@ class Cart extends Component
 {
 
     public array $cart = [];
+    public int $cartCount = 0;
 
+    public string $error = '';
 
     protected $listeners = ['addToCart'=> 'add'];
 
@@ -16,31 +18,41 @@ class Cart extends Component
     public function mount(){
 
         $this->cart = session()->get('cart', []);
+        $this->cartCount = $this->getCartCount();
     }
 
 
-    public function add($item){
+            public function add($item)
+        {
+            // Decode if needed
+            if (is_string($item)) {
+                $item = json_decode($item, true);
+            }
+           
 
-        $id = $item['id'];
+            $id = $item['id'] ?? null;
 
-        if(isset($this->cart[$id])){
-            $this->cart[$id]['quantity']++;
-        }        
+            if (!$id) {
+                $this->error = 'Unable to add this item to the cart';
+                return;
+            }
 
-        else{
+            if (isset($this->cart[$id])) {
+                $this->cart[$id]['quantity']++;
+            } else {
+                $this->cart[$id] = [
+                    'name' => $item['name'],
+                    'price' => $item['price'],
+                    'image' => $item['image'] ?? null,
+                    'description' => $item['description'] ?? null,
+                    'quantity' => 1,
+                ];
+            }
 
-            $this->cart[$id] = [
-            'name' => $item['name'],
-            'price' => $item['price'],
-            'image' => $item['image'] ?? null,
-            'description' => $item['description'] ?? null,
-            'quantity' => 1,
-            ];
+            $this->updateSession();
         }
 
-        $this->updateSession();
-    }
-
+        
 
     public function increaseQuantity($id){
         if(isset($this->cart[$id])){
@@ -70,17 +82,26 @@ class Cart extends Component
 
     public function updateSession(){
 
-        session(['cart'=>$this->cart]);
-        session()->put('cart_expires_at', now()->addHour());
-        $this->emit('cartUpdated', $this->getCartCount());
+        session()->put('cart', $this->cart);
+        $this->cartCount = $this->getCartCount();
+        $this->dispatch('cartUpdated');
+
     }
 
-
-    public function getTotal(){
-
-        return array_reduce($this->cart, fn($carry, $item)=> $carry + ($item['price'] * $item['quantity']), 0);
+    public function getCartSummary()
+    {
+        $subtotal = array_reduce($this->cart, fn($carry, $item) => $carry + ($item['price'] * $item['quantity']), 0);
+        $tax = $subtotal * 0.0635;
+        $total = $subtotal + $tax;
+    
+        return [
+            'subtotal' => round($subtotal, 2),
+            'tax' => round($tax, 2),
+            'total' => round($total, 2),
+        ];
     }
-
+    
+    
 
     public function getCartCount(){
 

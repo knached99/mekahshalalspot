@@ -24,7 +24,7 @@
                                     <div class="overlay"></div>
                                     <div class="content"
                                         style="display: flex; flex-direction: column; align-items: center; text-align: center;">
-                                        <img src="images/logo.png" class="logo">
+                                        <img src="images/logo.avif" class="logo">
                                         <h1 class="restaurantTitle">Mekahs</h1>
                                         <h2 class="restaurauntSubTitle">Halal Spot</h2>
                                         <p>403 Saw Mill Rd, West Haven, CT 06516</p>

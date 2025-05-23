@@ -3,7 +3,9 @@
 @php
     use Illuminate\Support\Str;
 @endphp
-
+<div style="display: none;">
+<livewire:cart />
+</div>
 <section class="food_section layout_padding-bottom">
     <div class="container">
         <div class="heading_container heading_center">
@@ -37,23 +39,16 @@
                                 <p>{{ $item->description }}</p>
                                 <div class="options">
                                     <h6>${{ number_format($item->price, 2) }}</h6>
-                                    <button class="bg-dark border-0 p-2" style="border-radius: 50%;"
-                                        {!! "wire:click=\"\$emit('addToCart', " .
-                                            e(
-                                                json_encode([
-                                                    'id' => $item->id,
-                                                    'name' => $item->name,
-                                                    'price' => $item->price,
-                                                    'image' => asset('storage/' . $item->image_path),
-                                                    'description' => $item->description,
-                                                ]),
-                                            ) .
-                                            ")\"" !!}>
-                                        <i class="fa-solid fa-dollar-sign text-white"></i>
-                                    </button>
+                                
+                               <livewire:menu-item-button :item="json_encode([
+                                'id' => $item->itemID,
+                                'name' => $item->name,
+                                'price' => $item->price,
+                                'image' => asset('storage/' . $item->image_path),
+                                'description' => $item->description
+                            ])" />
 
-                                    <i class="fa-solid fa-dollar-sign text-white"></i>
-                                    </button>
+
                                 </div>
                             </div>
                         </div>

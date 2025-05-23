@@ -419,6 +419,9 @@ video {
     position: relative;
     top: 10px;
     left: -50; /* Adjust as needed */
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
 }
 
 .restaurantTitle {

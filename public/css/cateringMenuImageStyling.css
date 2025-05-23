@@ -13,6 +13,8 @@
   cursor: none;
   image-rendering: high-quality;
   image-rendering: -webkit-optimize-contrast;
+  user-select: none;
+  -webkit-user-drag: none;
 }
 
 .zoom-lens {
@@ -58,4 +60,25 @@
   top: 50%;
   left: 0;
   transform: translateY(-50%);
+}
+
+/* Zoom Control Buttons */
+.zoom-controls {
+  margin-top: 10px;
+  text-align: center;
+}
+
+.zoom-controls button {
+  padding: 5px 15px;
+  font-size: 16px;
+  cursor: pointer;
+  margin: 5px;
+  background-color: #333;
+  color: white;
+  border: none;
+  border-radius: 4px;
+}
+
+.zoom-controls button:hover {
+  background-color: #555;
 }

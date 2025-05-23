@@ -15,7 +15,7 @@
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
     <body class="font-sans text-gray-900 antialiased" >
-        <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100 dark:bg-gray-900" style="background-image: url('https://images2.alphacoders.com/132/1322069.png'); background-size: cover; background-repeat: no-repeat;">
+        <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gradient-to-r from-slate-700 via-slate-800 to-slate-900">
             <div>
                 <a href="/" wire:navigate>
                     <x-application-logo class="w-20 h-20 fill-current text-gray-500" />

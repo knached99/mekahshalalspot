@@ -16,7 +16,7 @@ class Home extends Controller
 
         $sections = MenuSections::with(['menuItems'])->where('status', 1)->get();
         $menuItems = MenuItems::with(['menuSection'])->get();
-        $content = AboutSection::select('section_title','section_content')->get();  
+        $content = AboutSection::select('section_title','section_content')->get()->toArray();  
         $deal = DealsSection::select('deal_title', 'deal_content', 'deal_price', 'deal_image')->first();
      
         return view('landing.home', compact('sections', 'menuItems', 'content', 'deal'));
@@ -24,7 +24,7 @@ class Home extends Controller
 
     public function aboutPage(){
         
-        $content = AboutSection::select('section_title','section_content')->get();   
+        $content = AboutSection::select('section_title','section_content')->get()->toArray();   
         return view('landing.about', compact('content')); 
     }
 
